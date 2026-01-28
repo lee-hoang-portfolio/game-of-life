@@ -1,5 +1,15 @@
+// Use statements
+// Game of Life engine
 mod life;
 use life::*;
+
+// 
+
+// random number generator
+use nanorand::{pcg64::Pcg64, Rng, SeedableRng};
+
+// microbit
+use microbit::{board::Board};
 
 fn main() {
     println!("PLACEHOLDER");
@@ -20,5 +30,11 @@ fn main() {
     // test that the board can be passed to the done function.
     let is_done = done(&fb);
     println!("{}",is_done);
+
+    // test that a random number can be generated.
+    let mut rng = nanorand::Pcg64::new_seed(1);
+    let val: u8 = rng.generate();
+
+    println!("Random num: {}", val);
 
 }
