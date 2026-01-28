@@ -7,3 +7,5 @@ edition = "2024"
 nanorand = { version = "0.8.0", default-features = false, features = ["pcg64"] }
 cortex-m-rt = "0.7"
 microbit-v2 = "0.16.0"
+panic-rtt-target = "0.2"
+rtt-target = "0.6"

@@ -1,7 +1,11 @@
 # Life
 # Name: Lee Hoang
 
-Description: TBD
+Description: 
+
+To build this code, run:
+
+`cargo build --target "thumbv7em-none-eabihf"`
 
 # What I did
 

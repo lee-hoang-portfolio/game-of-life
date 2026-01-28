@@ -1,40 +1,41 @@
-// Use statements
-// Game of Life engine
-mod life;
-use life::*;
+#![no_main]
+#![no_std]
 
-// 
+// =====================================================================
+// Use statements
 
 // random number generator
 use nanorand::{pcg64::Pcg64, Rng, SeedableRng};
 
-// microbit
-use microbit::{board::Board};
+// cortex and microbit
+use cortex_m_rt::entry;
+use microbit::{
+    board::{Board, Buttons}
+};
 
-fn main() {
-    println!("PLACEHOLDER");
+// rtt_target
+use panic_rtt_target as _;
+use rtt_target::{rprintln, rtt_init_print};
 
-    // Define an empty board.
-    // All values are u8 as specified in life.rs.
-    let mut fb = [
-        [0u8, 0u8, 0u8, 0u8, 0u8],
-        [0u8, 0u8, 0u8, 0u8, 0u8],
-        [0u8, 0u8, 0u8, 0u8, 0u8],
-        [0u8, 0u8, 0u8, 0u8, 0u8],
-        [0u8, 0u8, 0u8, 0u8, 0u8],
-    ];
+// Game of Life engine
+mod life;
+use life::*;
 
-    // test that the board fb can be passed to the life function.
-    life(&mut fb);
+// =====================================================================
 
-    // test that the board can be passed to the done function.
-    let is_done = done(&fb);
-    println!("{}",is_done);
+// start of code
+#[entry]
+fn main() -> ! {
+    // 
+    rtt_init_print!();
 
-    // test that a random number can be generated.
-    let mut rng = nanorand::Pcg64::new_seed(1);
-    let val: u8 = rng.generate();
+    // define the board
+    let board = Board::take().unwrap();
 
-    println!("Random num: {}", val);
+    // required loop
+    // all behavior will take place inside the loop 
+    loop {
+        rprintln!("This is a placeholder");
+    }
 
 }
