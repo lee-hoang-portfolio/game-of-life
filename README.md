@@ -3,9 +3,12 @@
 
 Description: 
 
-To build this code, run:
+To build and run this code, run:
 
-`cargo build --target "thumbv7em-none-eabihf"`
+```
+cargo build
+cargo embed --release
+```
 
 # What I did
 
