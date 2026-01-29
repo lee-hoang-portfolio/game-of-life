@@ -7,7 +7,7 @@ To build and run this code, run:
 
 ```
 cargo build
-cargo embed --release
+cargo embed
 ```
 
 # What I did
