@@ -60,6 +60,24 @@ fn randomize_board(hw_rng: &mut HwRng, mut start_board: [[u8; 5]; 5]) -> [[u8; 5
     start_board
 }
 
+/// invert the board - this means turn off leds that are lit and turn on leds that are off
+fn invert_board(mut start_board: [[u8; 5]; 5]) -> [[u8; 5]; 5] {
+    // turn leds off or on depending on their initial value
+    // TODO - fix cargo clippy warnings
+    for i in 0..5 {
+        for j in 0..5 {
+            if start_board[i][j] == 0 {
+                start_board[i][j] = 1;
+            } else if start_board[i][j] == 1 {
+                start_board[i][j] = 0;
+            }
+        }
+    }
+
+    // return the board with inverted lights
+    start_board
+}
+
 
 // =====================================================================
 
@@ -84,7 +102,7 @@ fn main() -> ! {
 
     // for accessing Button A.
     let mut left_button = board.buttons.button_a;
-    // for accessing Button B. - TBD
+    // for accessing Button B.
     let mut right_button = board.buttons.button_b;
 
     // required loop
@@ -98,12 +116,12 @@ fn main() -> ! {
         if left_button.is_low().unwrap() {
             rprintln!("Button A is pressed!");
             start_board = randomize_board(&mut hw_rng, start_board);
-        } else { // Button B is pressed - turn 1s to 0s and 0s to 1s
-            if right_button.is_low().unwrap() {
-                rprintln!("Button B is pressed!");
-                // make the complement of the board
-                // TBD
-            }
+        } else if right_button.is_low().unwrap() && left_button.is_high().unwrap() { // Button B is pressed - turn 1s to 0s and 0s to 1s
+            rprintln!("Button B is pressed!");
+            // invert the lights on the board
+            start_board = invert_board(start_board);
+            display.show(&mut timer, start_board, 100); // show the inverted board
+            timer.delay_ms(500);                        // ignore the b button for 5 seconds
         }
 
 
@@ -115,7 +133,9 @@ fn main() -> ! {
             // TBD - button press received
 
             // no button press received - generate a random board
-            start_board = randomize_board(&mut hw_rng, start_board);
+            if left_button.is_high().unwrap() && right_button.is_high().unwrap() {
+                start_board = randomize_board(&mut hw_rng, start_board);
+            }
         }
 
         // run the game of life
