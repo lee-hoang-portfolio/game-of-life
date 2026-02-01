@@ -5,14 +5,14 @@
 // Use statements
 
 // random number generator
-use nanorand::{
+use nanorand::{                 // Docs: https://docs.rs/nanorand/latest/nanorand/
     pcg64::Pcg64, 
     Rng
 };
 
 // cortex and microbit
-use cortex_m_rt::entry;
-use microbit::{
+use cortex_m_rt::entry;         // Docs: https://docs.rs/cortex-m-rt/0.7.5/cortex_m_rt/ and https://docs.rs/cortex-m-rt/0.7.0/cortex_m_rt/
+use microbit::{                 // Docs: https://docs.rs/microbit-v2/0.16.0/microbit/index.html
     board::{Board},             // for getting the board and its peripherals
     display::blocking::Display, // for lighting up the leds
     hal::{
@@ -22,12 +22,14 @@ use microbit::{
 };
 
 // for delaying in ms and checking button states
-use embedded_hal::{
+use embedded_hal::{             // Docs: https://docs.rs/embedded-hal/1.0.0/embedded_hal/index.html
     delay::DelayNs, 
     digital::InputPin
 };
 
 // rtt_target
+// Docs: https://docs.rs/crate/rtt-target/0.6.0
+// https://docs.rs/panic-rtt-target/latest/panic_rtt_target/
 use panic_rtt_target as _;
 use rtt_target::{
     rprintln, 
