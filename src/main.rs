@@ -42,28 +42,27 @@ use life::*;
 // FUNCTIONS
 
 /// Generate a random board. 
-fn randomize_board(hw_rng: &mut HwRng, mut start_board: [[u8; 5]; 5]) -> [[u8; 5]; 5] {
+fn randomize_board(hw_rng: &mut HwRng, mut board: [[u8; 5]; 5]) -> [[u8; 5]; 5] {
     // choose a new random number and convert it to u128
     // every time this function is run, a new seed is generated
     let hal_seed = hw_rng.random_u64();             // generate a random u64
     let mut rng = Pcg64::new_seed(hal_seed.into()); // convert the random u64 into u128 and set up the new rng
 
     // randomly set parts of the board to 0 or 1
-    // TODO - fix cargo clippy warnings
-    for i in 0..5 {
-        for j in 0..5 {
-            start_board[i][j] = rng.generate_range(0..=1);
+    for row in &mut board {
+        for led in row {
+            *led = rng.generate_range(0..=1);
         }
     }
 
     // return the randomized board
-    start_board
+    board
 }
 
 /// invert the board - this means turn off leds that are lit and turn on leds that are off
-fn invert_board(mut start_board: [[u8; 5]; 5]) -> [[u8; 5]; 5] {
+fn invert_board(mut board: [[u8; 5]; 5]) -> [[u8; 5]; 5] {
     // turn leds off or on depending on their initial value
-    for row in &mut start_board {
+    for row in &mut board {
         for led in row {
             if *led == 0u8 { // dereference the led variable to access the u8 value
                 *led = 1u8;
@@ -74,7 +73,7 @@ fn invert_board(mut start_board: [[u8; 5]; 5]) -> [[u8; 5]; 5] {
     }
 
     // return the board with inverted lights
-    start_board
+    board
 }
 
 
