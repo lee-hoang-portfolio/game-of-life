@@ -63,13 +63,12 @@ fn randomize_board(hw_rng: &mut HwRng, mut start_board: [[u8; 5]; 5]) -> [[u8; 5
 /// invert the board - this means turn off leds that are lit and turn on leds that are off
 fn invert_board(mut start_board: [[u8; 5]; 5]) -> [[u8; 5]; 5] {
     // turn leds off or on depending on their initial value
-    // TODO - fix cargo clippy warnings
-    for i in 0..5 {
-        for j in 0..5 {
-            if start_board[i][j] == 0 {
-                start_board[i][j] = 1;
-            } else if start_board[i][j] == 1 {
-                start_board[i][j] = 0;
+    for row in &mut start_board {
+        for led in row {
+            if *led == 0u8 { // dereference the led variable to access the u8 value
+                *led = 1u8;
+            } else if *led == 1u8 {
+                *led = 0u8;
             }
         }
     }
