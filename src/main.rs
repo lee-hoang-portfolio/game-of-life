@@ -130,8 +130,6 @@ fn main() -> ! {
             rprintln!("Board is all 0, resetting in 5 frames");
             timer.delay_ms(500); // delay for 5 frames
 
-            // TBD - button press received
-
             // no button press received - generate a random board
             if left_button.is_high().unwrap() && right_button.is_high().unwrap() {
                 current_board = randomize_board(&mut hw_rng, current_board);
