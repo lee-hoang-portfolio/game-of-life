@@ -38,7 +38,7 @@ cargo embed
 
 # How it went
 
-Working on this project was not too difficult. Once I got past the initial setup issues, most of my difficulty was in figuring out the Microbit code to make the board play the Game of Life.
+Working on this project was not too difficult. Once I got past the initial setup issues, most of my difficulty was in figuring out the Microbit v2 code to make the board play the Game of Life.
 
 ## Setup issues
 
@@ -46,7 +46,7 @@ My initial biggest issue was getting WSL2 to work with my Microbit v2. To start,
 
 ## cargo clippy warnings
 
-When I encountered `cargo clippy` warnings, I followed `cargo`'s suggestions to use an iterator and iterate over the LED array directly. 
+When I encountered `cargo clippy` warnings, I followed cargo's suggestions to use an iterator and iterate over the LED array directly. 
 
 ## Highlights
 
@@ -68,4 +68,5 @@ When the B button is pressed, the cells invert before they all disappear. One of
 
 # Acknowledgements
 
+- [MB2 Discovery textbook](https://docs.rust-embedded.org/discovery-mb2/index.html) - provided starting points for Microbit v2 code.
 - [pdx-cs-rust-embedded](https://github.com/pdx-cs-rust-embedded) - provided starting points for setting up the project.
