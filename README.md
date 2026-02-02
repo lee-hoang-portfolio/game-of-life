@@ -50,15 +50,19 @@ When I encountered `cargo clippy` warnings, I followed cargo's suggestions to us
 
 ## Highlights
 
-It was exciting to see the board light up and display the patterns. 
+It was exciting to see the board light up and display the patterns. Testing the buttons and seeing them work was also a highlight.  
 
 # Observations
 
 While I was working on this program, I observed the following behaviors:
 
+## Walls, floors, and ceilings
+
+Columns of LEDs would sometimes light up such that they formed vertical walls. The same can be said for rows of LEDs on the top and bottom of the board. 
+
 ## Stuck on one pattern or alternating between two patterns
 
-Sometimes, the game of life will get stuck in a state where it only shows one pattern or goes back and forth between two patterns. 
+Sometimes, the program will get stuck in a state where it only shows one pattern or goes back and forth between two patterns. 
 
 The only way to get out of this state is to press either the A or B button. In this state, pressing the B button lets you see an inverted version of the still pattern or alternating pattern.
 
@@ -68,5 +72,5 @@ When the B button is pressed, the cells invert before they all disappear. One of
 
 # Acknowledgements
 
-- [MB2 Discovery textbook](https://docs.rust-embedded.org/discovery-mb2/index.html) - provided starting points for Microbit v2 code.
+- [MB2 Discovery Book](https://docs.rust-embedded.org/discovery-mb2/index.html) - provided starting points for Microbit v2 code.
 - [pdx-cs-rust-embedded](https://github.com/pdx-cs-rust-embedded) - provided starting points for setting up the project.
