@@ -65,3 +65,7 @@ The only way to get out of this state is to press either the A or B button. In t
 ## Cells disappear immediately after pressing the B Button
 
 When the B button is pressed, the cells invert before they all disappear. One of the rules mentioned in the Wikipedia article states that cells may disappear due to overpopulation. 
+
+# Acknowledgements
+
+- [pdx-cs-rust-embedded](https://github.com/pdx-cs-rust-embedded) - provided starting points for setting up the project.
