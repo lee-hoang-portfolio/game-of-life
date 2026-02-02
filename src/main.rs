@@ -97,8 +97,8 @@ fn main() -> ! {
     let mut hw_rng = HwRng::new(board.RNG);         // use the board's RNG to set up HW RNG
 
     // Generate a random board.
-    let mut start_board: [[u8; 5]; 5] = [[0; 5]; 5];
-    start_board = randomize_board(&mut hw_rng, start_board);
+    let mut current_board: [[u8; 5]; 5] = [[0; 5]; 5];
+    current_board = randomize_board(&mut hw_rng, current_board);
 
     // for accessing Button A.
     let mut left_button = board.buttons.button_a;
@@ -112,18 +112,18 @@ fn main() -> ! {
         // if button a is pressed, randomize the board
         if left_button.is_low().unwrap() {
             rprintln!("Button A is pressed!");
-            start_board = randomize_board(&mut hw_rng, start_board);
+            current_board = randomize_board(&mut hw_rng, current_board);
         } else if right_button.is_low().unwrap() && left_button.is_high().unwrap() { // Button B is pressed - turn 1s to 0s and 0s to 1s
             rprintln!("Button B is pressed!");
             // invert the lights on the board
-            start_board = invert_board(start_board);
-            display.show(&mut timer, start_board, 100); // show the inverted board
+            current_board = invert_board(current_board);
+            display.show(&mut timer, current_board, 100); // show the inverted board
             timer.delay_ms(500);                        // ignore the b button for 5 seconds
         }
 
 
         // if all lights are off (zero), wait 5 frames for a button press and then generate a new random board
-        if done(&start_board) {
+        if done(&current_board) {
             rprintln!("Board is all 0, resetting in 5 frames");
             timer.delay_ms(500); // delay for 5 frames
 
@@ -131,17 +131,16 @@ fn main() -> ! {
 
             // no button press received - generate a random board
             if left_button.is_high().unwrap() && right_button.is_high().unwrap() {
-                start_board = randomize_board(&mut hw_rng, start_board);
+                current_board = randomize_board(&mut hw_rng, current_board);
             }
         }
 
         // light up the leds on the microbit every 100 ms
-        display.show(&mut timer, start_board, 100);
+        display.show(&mut timer, current_board, 100);
         display.clear();         
 
         // run the game of life
-        //rprintln!("Normal step");
-        life(&mut start_board);
+        life(&mut current_board);
     }
 
 }
