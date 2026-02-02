@@ -108,6 +108,9 @@ fn main() -> ! {
     // required loop
     // all behavior will take place inside the loop 
     loop {
+        // light up the leds on the microbit every 100 ms
+        display.show(&mut timer, current_board, 100);
+        display.clear();         
 
         // if button a is pressed, randomize the board
         if left_button.is_low().unwrap() {
@@ -135,9 +138,6 @@ fn main() -> ! {
             }
         }
 
-        // light up the leds on the microbit every 100 ms
-        display.show(&mut timer, current_board, 100);
-        display.clear();         
 
         // run the game of life
         life(&mut current_board);

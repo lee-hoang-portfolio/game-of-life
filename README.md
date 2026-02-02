@@ -48,6 +48,10 @@ My initial biggest issue was getting WSL2 to work with my Microbit v2. To start,
 
 When I encountered `cargo clippy` warnings, I followed `cargo`'s suggestions to use an iterator and iterate over the LED array directly. 
 
+## Highlights
+
+It was exciting to see the board light up and display the patterns. 
+
 # Observations
 
 While I was working on this program, I observed the following behaviors:
