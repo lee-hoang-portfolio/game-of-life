@@ -72,5 +72,6 @@ When the B button is pressed, the cells invert before they all disappear. One of
 
 # Acknowledgements
 
+- Documentation for the `microbit-v2`, `nanorand`, and other crates. Links can be found in the source code. 
 - [MB2 Discovery Book](https://docs.rust-embedded.org/discovery-mb2/index.html) - provided starting points for Microbit v2 code.
 - [pdx-cs-rust-embedded](https://github.com/pdx-cs-rust-embedded) - provided starting points for setting up the project.
